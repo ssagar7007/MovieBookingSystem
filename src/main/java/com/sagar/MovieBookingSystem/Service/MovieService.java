@@ -36,10 +36,10 @@ public class MovieService {
 
 
     public List<MovieResponseDTO> getMoviesByGenre(String genre){
-        Optional<List<Movie>> movieList = movieRepository.findAllByGenre(genre);
-        if(movieList.isPresent()) {
+        List<Movie> movieList = movieRepository.findAllByGenre(genre);
+        if(!movieList.isEmpty()) {
             List<MovieResponseDTO> movieResponseDTOList = new ArrayList<>();
-            movieList.get().forEach(movie -> {
+            movieList.forEach(movie -> {
                 movieResponseDTOList.add(movieUtil.convertEntityToResponseDTO(movie));
             });
             return movieResponseDTOList;
@@ -49,10 +49,10 @@ public class MovieService {
     }
 
     public List<MovieResponseDTO> getMoviesByLanguage(String language){
-        Optional<List<Movie>> movieList = movieRepository.findAllByLanguage(language);
-        if(movieList.isPresent()) {
+        List<Movie> movieList = movieRepository.findAllByLanguage(language);
+        if(!movieList.isEmpty()) {
             List<MovieResponseDTO> movieResponseDTOList = new ArrayList<>();
-            movieList.get().forEach(movie -> {
+            movieList.forEach(movie -> {
                 movieResponseDTOList.add(movieUtil.convertEntityToResponseDTO(movie));
             });
             return movieResponseDTOList;
