@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface TheaterRepository extends JpaRepository<Theater,Long> {
-    List<Theater> findByLocation(String location);
+    List<Theater> findByTheaterLocation(String location);
 
 }

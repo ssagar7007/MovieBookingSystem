@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface ShowRepository extends JpaRepository<Show,Long> {
-    List<Show> findAllByMovieId(String movieId);
-    List<Show> findAllByTheaterId(String theaterId);
+    List<Show> findAllByMovieId(Long movieId);
+    List<Show> findAllByTheaterId(Long theaterId);
 
 
 }

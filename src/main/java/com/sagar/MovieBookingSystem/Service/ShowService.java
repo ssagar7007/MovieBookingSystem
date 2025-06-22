@@ -43,7 +43,7 @@ public class ShowService {
         return showDTOList;
     }
 
-    public List<ShowDTO> getAllShowsByMovie(String movieId){
+    public List<ShowDTO> getAllShowsByMovie(Long movieId){
         List<Show> showList = showRepository.findAllByMovieId(movieId);
         if(!showList.isEmpty()){
             List<ShowDTO> showDTOList = new ArrayList<>();
@@ -56,7 +56,7 @@ public class ShowService {
         }
     }
 
-    public List<ShowDTO> getAllShowsByTheater(String theaterId){
+    public List<ShowDTO> getAllShowsByTheater(Long theaterId){
         List<Show> showList = showRepository.findAllByTheaterId(theaterId);
         if(!showList.isEmpty()){
             List<ShowDTO> showDTOList = new ArrayList<>();

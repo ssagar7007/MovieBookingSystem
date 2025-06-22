@@ -27,12 +27,12 @@ public class ShowController {
         return ResponseEntity.ok(showService.getAllShows());
     }
     @GetMapping("/allShowsByMovie/{movieid}")
-    public ResponseEntity<List<ShowDTO>> getAllShowsByMovie(@PathVariable String movieId){
+    public ResponseEntity<List<ShowDTO>> getAllShowsByMovie(@PathVariable Long movieId){
         return ResponseEntity.ok(showService.getAllShowsByMovie(movieId));
     }
 
     @GetMapping("/allShowsByTheater/{theaterId}")
-    public ResponseEntity<List<ShowDTO>> getAllShowsByTheater(@PathVariable String theaterId){
+    public ResponseEntity<List<ShowDTO>> getAllShowsByTheater(@PathVariable Long theaterId){
         return ResponseEntity.ok(showService.getAllShowsByTheater(theaterId));
     }
 

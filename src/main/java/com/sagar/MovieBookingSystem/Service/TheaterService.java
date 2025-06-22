@@ -23,7 +23,7 @@ public class TheaterService {
     }
 
     public List<TheaterDTO> getTheaterByLocation(String location){
-        List<Theater> theaterList = theaterRepository.findByLocation(location);
+        List<Theater> theaterList = theaterRepository.findByTheaterLocation(location);
         List<TheaterDTO> theaterDTOList = new ArrayList<>();
         if(!theaterList.isEmpty()){
             theaterList.forEach(theater -> {
