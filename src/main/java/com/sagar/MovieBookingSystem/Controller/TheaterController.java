@@ -16,7 +16,7 @@ public class TheaterController {
     private TheaterService theaterService;
 
     @PostMapping("/addTheater")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<TheaterDTO> addTheater(@RequestBody TheaterDTO theaterDTO){
         return ResponseEntity.ok(theaterService.addTheater(theaterDTO));
     }
@@ -27,13 +27,13 @@ public class TheaterController {
     }
 
     @PutMapping("/updateTheater/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<TheaterDTO> updateTheater(@PathVariable Long id,@RequestBody TheaterDTO theaterDTO){
         return ResponseEntity.ok(theaterService.updateTheater(id,theaterDTO));
     }
 
     @DeleteMapping("/deleteTheater/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<TheaterDTO> deleteTheater(@PathVariable Long id){
         theaterService.deleteTheater(id);
         return ResponseEntity.ok().build();

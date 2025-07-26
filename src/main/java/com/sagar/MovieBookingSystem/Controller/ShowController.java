@@ -17,7 +17,7 @@ public class ShowController {
 
 
     @PostMapping("/createShow")
-    @PreAuthorize(("hasRole('ADMIN')"))
+    @PreAuthorize(("hasRole('ROLE_ADMIN')"))
     public ResponseEntity<ShowDTO> createShow(@RequestBody ShowDTO showDTO){
         return ResponseEntity.ok(showService.createShow(showDTO));
     }
@@ -37,13 +37,13 @@ public class ShowController {
     }
 
     @PutMapping("/updateShow/{id}")
-    @PreAuthorize(("hasRole('ADMIN')"))
+    @PreAuthorize(("hasRole('ROLE_ADMIN')"))
     public ResponseEntity<ShowDTO> updateShow(@PathVariable Long id, @RequestBody ShowDTO showDTO){
         return ResponseEntity.ok(showService.updateShow(id, showDTO));
     }
 
     @DeleteMapping("/deleteShow/{id}")
-    @PreAuthorize(("hasRole('ADMIN')"))
+    @PreAuthorize(("hasRole('ROLE_ADMIN')"))
     public ResponseEntity<Void> deleteShow(@PathVariable Long id){
         showService.deleteShow(id);
         return ResponseEntity.ok().build();
