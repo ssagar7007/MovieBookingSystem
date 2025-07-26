@@ -49,14 +49,17 @@ public class JwtService {
     }
 
     public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails){
+        long now = System.currentTimeMillis();
         return Jwts
                 .builder()
                 .claims(extraClaims)
                 .subject(userDetails.getUsername())
-                .issuedAt(new Date(System.currentTimeMillis() + jwtExpiration))
+                .issuedAt(new Date(now))
+                .expiration(new Date(now + jwtExpiration))
                 .signWith(getSignInKey())
                 .compact();
     }
+
 
     public boolean isTokenValid(String jwtToken, UserDetails userDetails){
         final String username = extractUsername(jwtToken);

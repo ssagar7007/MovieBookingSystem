@@ -2,6 +2,10 @@ package com.sagar.MovieBookingSystem.Security;
 
 import com.sagar.MovieBookingSystem.Service.CustomUserDetailsService;
 import com.sagar.MovieBookingSystem.jwt.JwtAuthenticationFilter;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +37,8 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**",
                                 "/v3/api-docs/**",
                                 "/swagger-ui/**",
-                                "/swagger-ui.html").permitAll()
+                                "/swagger-ui.html",
+                                "/api/movies/getAllMovies").permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated())
                 .sessionManagement(session -> session
@@ -62,5 +67,24 @@ public class SecurityConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception{
         return config.getAuthenticationManager();
+    }
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        final String securitySchemeName = "bearerAuth";
+
+        return new OpenAPI()
+                .info(new Info()
+                        .title("Movie Booking API")
+                        .version("1.0")
+                        .description("API documentation for JWT-secured Movie Booking System"))
+                .addSecurityItem(new SecurityRequirement().addList(securitySchemeName))
+                .components(new io.swagger.v3.oas.models.Components()
+                        .addSecuritySchemes(securitySchemeName,
+                                new SecurityScheme()
+                                        .name(securitySchemeName)
+                                        .type(SecurityScheme.Type.HTTP)
+                                        .scheme("bearer")
+                                        .bearerFormat("JWT")));
     }
 }

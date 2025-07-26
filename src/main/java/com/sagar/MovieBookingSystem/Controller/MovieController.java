@@ -19,7 +19,7 @@ public class MovieController {
 
 
     @PostMapping("/addMovie")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MovieResponseDTO> addMovie(@RequestBody MovieRequestDTO movieRequestDTO){
         return ResponseEntity.ok(movieService.addMovie(movieRequestDTO));
     }
@@ -45,14 +45,14 @@ public class MovieController {
 
     }
     @PutMapping("/updateMovie/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MovieResponseDTO> updateMovie(@PathVariable Long id, @RequestBody MovieRequestDTO movieRequestDTO){
         return ResponseEntity.ok(movieService.updateMovie(id,movieRequestDTO));
 
     }
 
     @DeleteMapping("/deleteMovie/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<Void> deleteMovie(@PathVariable Long id){
         movieService.deleteMovie(id);
         return ResponseEntity.ok().build();
