@@ -4,7 +4,10 @@ import com.sagar.MovieBookingSystem.DTO.MovieRequestDTO;
 import com.sagar.MovieBookingSystem.DTO.MovieResponseDTO;
 import com.sagar.MovieBookingSystem.Entity.Movie;
 import com.sagar.MovieBookingSystem.Repository.MovieRepository;
+import com.sagar.MovieBookingSystem.Repository.ShowRepository;
 import com.sagar.MovieBookingSystem.Util.MovieUtil;
+import jakarta.transaction.Transactional;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +16,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class MovieService {
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
+    private ShowRepository showRepository;
     @Autowired
     private MovieUtil movieUtil;
 
@@ -31,6 +37,8 @@ public class MovieService {
           movieList.forEach(movie -> {
               movieResponseDTOList.add(movieUtil.convertEntityToResponseDTO(movie));
           });
+          log.info("movieResponseDTOList {}",movieResponseDTOList);
+          log.debug("movieResponseDTOList {}",movieResponseDTOList);
           return movieResponseDTOList;
     }
 

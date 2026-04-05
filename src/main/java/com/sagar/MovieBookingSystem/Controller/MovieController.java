@@ -19,7 +19,7 @@ public class MovieController {
 
 
     @PostMapping("/addMovie")
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<MovieResponseDTO> addMovie(@RequestBody MovieRequestDTO movieRequestDTO){
         return ResponseEntity.ok(movieService.addMovie(movieRequestDTO));
     }

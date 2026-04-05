@@ -58,7 +58,7 @@ public class BookingUtil {
     }
 
     public void validateCancellation(Booking booking){
-        if(booking.getBookingStatus() != BookingStatus.CANCELLED){
+        if(booking.getBookingStatus() == BookingStatus.CANCELLED){
             throw new RuntimeException("Booking is already cancelled.");
         }
 
@@ -66,10 +66,8 @@ public class BookingUtil {
         LocalDateTime deadLineTime = showTime.minusHours(2);
 
         if(LocalDateTime.now().isAfter(deadLineTime)){
-            throw new RuntimeException("Cannot cancel the booking.");
+            throw new RuntimeException("Cannot cancel the booking. Cancellation window has passed.");
         }
-
-
 
     }
 }

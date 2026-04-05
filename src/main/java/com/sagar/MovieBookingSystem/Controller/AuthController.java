@@ -18,7 +18,7 @@ public class AuthController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    @PostMapping("/register-normal-user")
+    @PostMapping("/register")
     public ResponseEntity<User> registerNormalUser(@RequestBody RegisterRequestDTO registerRequestDTO){
         return ResponseEntity.ok(authenticationService.registerNormalUser(registerRequestDTO));
     }

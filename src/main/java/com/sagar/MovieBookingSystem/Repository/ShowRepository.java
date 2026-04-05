@@ -10,6 +10,7 @@ import java.util.List;
 public interface ShowRepository extends JpaRepository<Show,Long> {
     List<Show> findAllByMovieId(Long movieId);
     List<Show> findAllByTheaterId(Long theaterId);
+    void deleteByMovieId(Long movieId);
 
 
 }

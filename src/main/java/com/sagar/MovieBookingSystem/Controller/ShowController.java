@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/show")
+@RequestMapping("/api/shows")
 public class ShowController {
     @Autowired
     private ShowService showService;
 
 
-    @PostMapping("/createShow")
+    @PostMapping("/addShow")
     @PreAuthorize(("hasRole('ROLE_ADMIN')"))
     public ResponseEntity<ShowDTO> createShow(@RequestBody ShowDTO showDTO){
         return ResponseEntity.ok(showService.createShow(showDTO));

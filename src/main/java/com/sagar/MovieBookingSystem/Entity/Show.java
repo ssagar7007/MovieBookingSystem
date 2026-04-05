@@ -2,6 +2,7 @@ package com.sagar.MovieBookingSystem.Entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,14 +19,16 @@ public class Show {
     private Double price;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @ToString.Exclude
     @JoinColumn(name = "movie_id",nullable = false)
     private Movie movie;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @ToString.Exclude
     @JoinColumn(name = "theater_id",nullable = false)
     private Theater theater;
 
-    @OneToMany(mappedBy = "show",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "show",fetch = FetchType.LAZY,cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Booking> booking;
 
 

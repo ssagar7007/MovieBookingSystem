@@ -16,7 +16,7 @@ public class Theater {
     private String theaterLocation;
     private Integer theaterCapacity;
     private String theaterScreenType;
-    @OneToMany(mappedBy = "theater",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "theater",fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Show> show;
 
 }

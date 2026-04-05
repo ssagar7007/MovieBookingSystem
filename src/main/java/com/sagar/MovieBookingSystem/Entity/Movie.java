@@ -18,6 +18,6 @@ public class Movie {
     private String duration;
     private LocalDate releaseDate;
     private String language;
-    @OneToMany(mappedBy = "movie",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "movie",fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Show> show;
 }

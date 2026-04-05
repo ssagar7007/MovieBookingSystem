@@ -18,7 +18,7 @@ public class AdminController {
     @Autowired
     private AuthenticationService authenticationService;
 
-    @PostMapping("/register-admin-user")
+    @PostMapping("/register")
     public ResponseEntity<User> registerAdminUser(@RequestBody RegisterRequestDTO registerRequestDTO){
         return ResponseEntity.ok(authenticationService.registerAdminUser(registerRequestDTO));
     }
