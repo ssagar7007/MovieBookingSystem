@@ -19,7 +19,7 @@ spring:
         max-idle: 8
         min-idle: 0
 jwt:
-  secret: ABCD1234@#$ajdnuyewkc8ndsnki*&^%ndwkwyqin28hn3
+  secret: ${JWT_SECRET}
   expiration: 3600000
 
 logging:
